@@ -1,0 +1,19 @@
+{
+  "name": "hr-time",
+  "version": "1.0.0",
+  "description": "An implementation of the W3C High Resolution Time Level 2 specification.",
+  "main": "index.js",
+  "repository": "https://github.com/jsdom/hr-time",
+  "author": "Timothy Gu <timothygu99@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "browser-process-hrtime": "^0.1.2"
+  },
+  "devDependencies": {
+    "jest": "^22.0.4"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
