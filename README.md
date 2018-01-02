@@ -1,4 +1,4 @@
-# hr-time
+# w3c-hr-time
 
 This module implements the W3C [High Resolution Time Level 2][HR-TIME] specification. It provides exactly three exports:
 
@@ -15,7 +15,7 @@ Portability is paramount to this module. It uses only APIs exposed from Node.js 
 Probably the most interesting export is the [`Performance`][] class.
 
 ```js
-const { Performance } = require("hr-time");
+const { Performance } = require("w3c-hr-time");
 const performance = new Performance();
 
 console.log(performance.timeOrigin);
@@ -52,7 +52,7 @@ The High Resolution Time spec defines a [global monotonic clock][] that is "shar
 This module exports a function `getGlobalMonotonicClockMS()` that is the basis of all timing functions used my this module when a monotonic time is required. It returns a high-resolution timestamp whose zero value is at some arbitrary point in the past. (For the current high-resolution timestamp based on the Unix epoch, use `new Performance().timeOrigin` instead.)
 
 ```js
-const { getGlobalMonotonicClockMS } = require("hr-time");
+const { getGlobalMonotonicClockMS } = require("w3c-hr-time");
 
 const start = getGlobalMonotonicClockMS();
 console.log(start);
@@ -78,7 +78,7 @@ The High Resolution Time spec [specifies][`DOMHighResTimeStamp`] that
 This module implements this suggestion faithfully. It executes a test at `require()`-time to determine if the system clock (both `Date.now()` and `process.hrtime()`) is accurate enough to 5 microseconds. The result of this test can be accessed through the exported `clockIsAccurate` boolean value.
 
 ```js
-const { Performance, clockIsAccurate } = require("hr-time");
+const { Performance, clockIsAccurate } = require("w3c-hr-time");
 
 const performance = new Performance();
 

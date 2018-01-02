@@ -1,9 +1,9 @@
 {
-  "name": "hr-time",
+  "name": "w3c-hr-time",
   "version": "1.0.0",
   "description": "An implementation of the W3C High Resolution Time Level 2 specification.",
   "main": "index.js",
-  "repository": "https://github.com/jsdom/hr-time",
+  "repository": "https://github.com/jsdom/w3c-hr-time",
   "author": "Timothy Gu <timothygu99@gmail.com>",
   "license": "MIT",
   "private": false,
