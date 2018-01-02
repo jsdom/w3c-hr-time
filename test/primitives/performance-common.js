@@ -25,6 +25,11 @@ function testPerformanceCommon() {
     const now = Date.now();
     expect(performance.timeOrigin).toBeCloseTo(now, NUM_DIGITS);
   });
+
+  test("performance.toJSON() returns an empty object", () => {
+    const performance = new Performance();
+    expect(performance.toJSON()).toEqual({});
+  });
 }
 
 module.exports = testPerformanceCommon;
