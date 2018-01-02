@@ -2,14 +2,13 @@
 
 require("./utils/inaccurate-clock")("Date.now");
 
-const { clockIsAccurate, Performance } = require("../");
-const timeoutTest = require("./utils/timeout-test");
-const checkPerformanceNowIntegers = require("./utils/performance-now-integers");
+var a = process.hrtime();
+const { clockIsAccurate } = require("../");
 
-test("mocked inaccurate clock: only Date.now()", () => {
-  const performance = new Performance();
-
+beforeAll(() => {
   expect(clockIsAccurate).toBe(false);
-  checkPerformanceNowIntegers(performance);
-  return timeoutTest(performance);
 });
+
+require("./primitives/global-monotonic-clock")();
+require("./primitives/performance-common")();
+require("./primitives/performance-integers")();

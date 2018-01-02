@@ -2,10 +2,5 @@
 
 const FACTOR = require("./utils/slow-down-clock");
 
-const { Performance } = require("../");
-const timeoutTest = require("./utils/timeout-test");
-
-test("mocked clock drift", () => {
-  const performance = new Performance();
-  return timeoutTest(performance, FACTOR);
-});
+require("./primitives/global-monotonic-clock")(FACTOR);
+require("./primitives/performance-common")();
