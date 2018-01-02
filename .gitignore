@@ -1,1 +1,7 @@
+.DS_Store
+.*.swp
+gmon.out
+v8.log
+coverage
 node_modules
+package-lock.json
