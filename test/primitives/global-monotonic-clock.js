@@ -19,6 +19,6 @@ function testGlobalMonotonicClock(FACTOR = 1) {
       expect(getGlobalMonotonicClockMS() - startGlobalMonotonicClock).toBeCloseTo(TIMEOUT, NUM_DIGITS);
     });
   });
-};
+}
 
 module.exports = testGlobalMonotonicClock;

@@ -2,7 +2,6 @@
 
 require("./utils/inaccurate-clock")("Date.now");
 
-var a = process.hrtime();
 const { clockIsAccurate } = require("../");
 
 beforeAll(() => {
