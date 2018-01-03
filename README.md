@@ -98,6 +98,10 @@ For example, if `performance.now()` returns 1000, it is guaranteed that the time
 
 On the other hand, `performance.timeOrigin` returns the *[Unix time][]* at which the `Performance` object is constructed and relies on the current time exposed through `Date.now()`. That means that it is susceptible to clock drifts that has occurred before the `Performance` object was constructed.
 
+## License
+
+This software is licensed under the MIT license. See LICENSE.md file for more detail.
+
 [HR-TIME]: https://w3c.github.io/hr-time/
 [NAVIGATION-TIMING]: https://w3c.github.io/navigation-timing/
 [PERFORMANCE-TIMELINE]: https://w3c.github.io/performance-timeline/
