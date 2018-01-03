@@ -8,7 +8,8 @@ const DELTA = 20; // ±20 ms
 const NUM_DIGITS = -Math.log10(DELTA * 2);
 
 function testGlobalMonotonicClock(FACTOR = 1) {
-  test("timing works with setTimeout", () => {
+  let clockDriftDesc = FACTOR !== 1 ? " and is not affected by clock drift" : "";
+  test("global monotonic clock corresponds with setTimeout" + clockDriftDesc, () => {
     const startDateNow = Date.now();
     const startGlobalMonotonicClock = getGlobalMonotonicClockMS();
 

@@ -12,8 +12,6 @@ Portability is paramount to this module. It uses only APIs exposed from Node.js 
 
 ## `Performance` class
 
-Probably the most interesting export is the [`Performance`][] class.
-
 ```js
 const { Performance } = require("w3c-hr-time");
 const performance = new Performance();
@@ -31,15 +29,15 @@ setTimeout(() => {
 }, 5000);
 ```
 
-By constructing the class, you can get an instance quite similar to the `window.performance` object in browsers. Specifically, the following APIs are implemented:
+Perhaps the most interesting export is the [`Performance`][] class. By constructing the class, you can get an instance quite similar to the `window.performance` object in browsers. Specifically, the following APIs are implemented:
 
 * [`performance.now(): number`][`Performance#now()`] returns the high-resolution duration since the construction of the `Performance` object.
 * [`performance.timeOrigin: number`][`Performance#timeOrigin`] is a high-resolution timestamp of the `Performance` object's construction, expressed in [Unix time][].
-* [`performance.toJSON(): object`][`Performance#toJSON()`] always returns an empty object. In browsers, the returned object may contain additional properties such as `navigation` and `timing`. However, those properties are specific to browser navigation and are unsuitable for a Node.js implementation like this module. Furthermore, they are specified not in the High Resolution Time spec but in [Navigation Timing][NAVIGATION-TIMING], and are thereby outside the scope of this module. For compatibility, the method always returns the empty object.
+* [`performance.toJSON(): object`][`Performance#toJSON()`] returns an object with `timeOrigin` property set to the corresponding value of this object. This allows serializing the `Performance` object with `JSON.stringify()`. In browsers, the returned object may contain additional properties such as `navigation` and `timing`. However, those properties are specific to browser navigation and are unsuitable for a Node.js implementation. Furthermore, they are specified not in the High Resolution Time spec but in [Navigation Timing][NAVIGATION-TIMING], and are thereby outside the scope of this module.
 
 ### Limitations
 
-This module does not aim for full [Web IDL][WEBIDL] conformance, so things like `performance.toJSON.call(undefined)` will not throw `TypeError`s like it does in browsers. If you need full Web IDL conformance, you may be interested in the [webidl2js][] module.
+This module does not aim for full [Web IDL][WEBIDL] conformance, so things like `performance.toJSON.call({})` will not throw `TypeError`s like it does in browsers. If you need full Web IDL conformance, you may be interested in the [webidl2js][] module.
 
 The `Performance` class provided also does not have `mark()`, `measure()`, `getEntries()`, and such functions. They are specified in other specs than High Resolution Timing, such as [User Timing][USER-TIMING] (marks and measures) and [Performance Timeline][PERFORMANCE-TIMELINE] (entries management). Those specs extend the definition of the `Performance` class defined in High Resolution Timing, and to implement those specs you can extend the `Performance` class exported by this module.
 
@@ -69,7 +67,7 @@ Unlike other functions that return only integer timestamps if the system clock d
 
 ## Clock accuracy
 
-The High Resolution Time spec [specifies][`DOMHighResTimeStamp`] that
+The High Resolution Time spec [states][HR-TIME §4] that
 
 > A [`DOMHighResTimeStamp`][] *SHOULD* represent a time in milliseconds accurate to 5 microseconds - see [8. Privacy and Security][HR-TIME §8].
 >
@@ -96,7 +94,7 @@ If `clockIsAccurate` is false, `performance.timeOrigin` and `performance.now()` 
 
 In the spec, the [global monotonic clock][] is defined to be immune to such drifts. Correspondingly, the APIs exposed through this module that are defined using the global monotonic clock such as `performance.now()` and `getGlobalMonotonicClockMS()` are also guaranteed to reflect real time.
 
-For example, if `performance.now()` returns 1000, it is guaranteed that the time of this call is exactly one second since the construction of the `Performance` object. But the difference in `Date.now()`'s value from the construction of the `Performance` object to when `performance.now()` returns 1000 may not be exactly 1000.  You may also see `performance.now() - Date.now()` diverge over time as a result of clock drifts.
+For example, if `performance.now()` returns 1000, it is guaranteed that the time of this call is exactly one second since the construction of the `Performance` object. But the difference in `Date.now()`'s value from the construction of the `Performance` object to when `performance.now()` returns 1000 may not be exactly 1000. You may also see `performance.now() - Date.now()` diverge over time as a result of clock drifts.
 
 On the other hand, `performance.timeOrigin` returns the *[Unix time][]* at which the `Performance` object is constructed and relies on the current time exposed through `Date.now()`. That means that it is susceptible to clock drifts that has occurred before the `Performance` object was constructed.
 
@@ -106,6 +104,7 @@ On the other hand, `performance.timeOrigin` returns the *[Unix time][]* at which
 [USER-TIMING]: https://w3c.github.io/user-timing/
 [WEBIDL]: https://heycam.github.io/webidl/
 
+[HR-TIME §4]: https://w3c.github.io/hr-time/#dom-domhighrestimestamp
 [HR-TIME §8]: https://w3c.github.io/hr-time/#privacy-security
 
 [`DOMHighResTimeStamp`]: https://w3c.github.io/hr-time/#dom-domhighrestimestamp

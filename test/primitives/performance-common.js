@@ -26,9 +26,9 @@ function testPerformanceCommon() {
     expect(performance.timeOrigin).toBeCloseTo(now, NUM_DIGITS);
   });
 
-  test("performance.toJSON() returns an empty object", () => {
+  test("performance.toJSON() returns an object with timeOrigin", () => {
     const performance = new Performance();
-    expect(performance.toJSON()).toEqual({});
+    expect(performance.toJSON()).toEqual({ timeOrigin: performance.timeOrigin });
   });
 }
 
