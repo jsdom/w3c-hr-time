@@ -4,6 +4,8 @@ node_js:
   - "8"
   - stable
 
+cache: yarn
+
 script:
   - yarn test
   - yarn lint
