@@ -21,6 +21,7 @@
   },
   "files": [
     "lib",
-    "index.js"
+    "index.js",
+    "LICENSE.md"
   ]
 }
