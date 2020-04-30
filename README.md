@@ -58,7 +58,7 @@ console.log(start);
 // 280249733.012151.
 
 setTimeout(() => {
-  console.log(getGlobalMonotonicClockMS() - a);
+  console.log(getGlobalMonotonicClockMS() - start);
   // Prints a number close to 5000, like 5006.156536.
 }, 5000);
 ```
