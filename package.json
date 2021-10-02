@@ -11,13 +11,16 @@
     "browser-process-hrtime": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.14.0",
-    "eslint-plugin-jest": "^21.5.0",
-    "jest": "^24.1.0"
+    "eslint": "^7.32.0",
+    "eslint-plugin-jest": "^24.5.0",
+    "jest": "^27.2.0"
   },
   "scripts": {
     "test": "jest",
     "lint": "eslint ."
+  },
+  "engines": {
+    "node": ">=12"
   },
   "files": [
     "lib",
