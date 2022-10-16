@@ -1,9 +1,0 @@
-.DS_Store
-.*.swp
-gmon.out
-npm-debug.log
-yarn-error.log
-v8.log
-coverage
-node_modules
-package-lock.json
